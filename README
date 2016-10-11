@@ -1,0 +1,10 @@
+README
+======
+
+This zip file contains all of the code listings from the book
+"Practical Ruby Gems." You'll need Ruby and RubyGems installed
+to run these examples; see chapter 2 for the details.
+
+Additionally, note that you may need additional software installed 
+for each listing; see the individual chapters for more information.
+

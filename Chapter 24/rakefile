@@ -1,0 +1,43 @@
+input_dir='documentation'
+output_dir='public'
+
+task :default => [:build_directories, :build_html]
+
+task :build_directories do |t|
+   mkdir output_dir unless File.exists?(output_dir)
+   mkdir input_dir unless File.exists?(input_dir)
+end
+
+# Loop through all of the BlueCloth files and create
+# HTML documentation from them.
+
+task :build_html do |t|
+  require 'bluecloth' # Note that this is here, 
+                      # and not at the top of the file;
+                      # that way, we can add tasks later
+                      # that don't require bluecloth,
+                      # and developers can run those tasks
+                      # without having bluecloth installed.
+
+  cd input_dir
+
+  files=FileList["*.bc"].to_a
+
+  cd ".."
+
+  files.each do |filename|  
+    input_file="#{input_dir}/#{filename}"
+    
+    output_file= "#{output_dir}/" << 
+      filename.gsub(/^(.*)\.bc$/,'\1') << ".html"
+
+    File.open(output_file,'w').puts BlueCloth::new(
+                File.open(input_file).read
+                ).to_html
+    
+    puts "processing #{input_file} into #{output_file}"
+
+  end
+  
+end
+

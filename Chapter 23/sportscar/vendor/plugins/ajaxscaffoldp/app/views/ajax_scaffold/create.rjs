@@ -1,0 +1,20 @@
+@options = { :scaffold_id => params[:scaffold_id], :action => "view" }
+@create_options = @options.merge(:action => "create"+@suffix, :id => params[:id])
+
+if @successful
+  @options[:id] = eval("@"+params[:scaffold_id]+".id")
+  page.insert_html :bottom, scaffold_tbody_id(@options), :partial => scaffold_partial_path('row'), 
+                   :object => eval("@"+params[:scaffold_id]), :locals => { :hidden => true }
+  page << "new TableRow.MoveAfter('#{element_row_id(@create_options)}', '#{element_row_id(@options)}');"
+  page.remove element_row_id(@create_options)
+  page.show element_row_id(@options)
+  page << "AjaxScaffold.stripe('#{scaffold_tbody_id(@options)}');" 
+  page << "AjaxScaffold.removeSortClasses('#{@options[:scaffold_id]}');"
+  page.replace_html scaffold_messages_id(@options), :partial => scaffold_partial_path('messages')
+else
+  page.replace_html element_messages_id(@create_options), :partial => scaffold_partial_path('form_messages')
+  page << "Form.enable('#{element_form_id(@create_options)}');"
+  page.hide loading_indicator_id(@create_options)
+end
+
+

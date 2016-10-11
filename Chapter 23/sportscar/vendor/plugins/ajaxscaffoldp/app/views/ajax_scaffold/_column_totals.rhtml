@@ -1,0 +1,10 @@
+<tr class="ajax-scaffold-totals">
+	<% for scaffold_column in @scaffold_columns %>
+  		<td>
+     		<% if show_totals_for_column?(scaffold_column.name) %><p><%= scaffold_column.total %></p><% else %>&nbsp;<% end %>
+  		</td>
+	<% end %>
+  	<% unless @no_edit && @no_delete %>
+		<td class="actions">&nbsp;</td>
+	<% end %>
+</tr>

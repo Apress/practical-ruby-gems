@@ -1,0 +1,5 @@
+<%= render :partial => scaffold_partial_path('messages') %>
+
+<% unless eval("@"+params[:scaffold_id]+".nil?") %>
+    <%= error_messages_for "#{params[:scaffold_id]}" %>
+<% end %>

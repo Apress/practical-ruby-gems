@@ -1,0 +1,15 @@
+#Why you should use Ruby.
+
+Ruby is an open source, powerful programming language. It's a scripting language, 
+much like Perl or Python. However, it's surprisingly elegant; complex techniques
+can be implemented in just a few lines of code. It's also harmonious, in that
+things—even complex things—work the way you might expect them to, even when 
+used in surprising ways.
+
+For example, Ruby handles iterators in an interesting way. It defines a simple yet 
+powerful way to deal with arbitrary blocks of code. The follow code prints out 1 through 10:
+
+    1.upto(10){ |x|
+      print x
+    }
+

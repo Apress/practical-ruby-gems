@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <title>MySQL Dump of <%=@table.table_name.titlecase%></title>
+  </head>
+  <body>
+    <h1><%=@table.table_name.titlecase%><h1>
+    <table>
+
+      <tr>
+        <%@table. column_names.each do |col|%>
+            <th><%=col %></th>
+        <%end%>
+      </tr>
+
+      <%@print_data.each do |row|%>
+        <tr>
+        <%@table.column_names.each do |col|%>
+            <td><%==row[col]%></td>
+        <%end%>
+        </tr>
+      <%end%>
+
+    </table>
+  </body>
+</html>
+
